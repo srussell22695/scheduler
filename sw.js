@@ -1,10 +1,10 @@
 const CACHE = 'scheduler-v1';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  '/scheduler/',
+  '/scheduler/index.html',
+  '/scheduler/manifest.json',
+  '/scheduler/sw.js',
+  '/scheduler/icon-512.png'
 ];
 
 self.addEventListener('install', e => {
@@ -21,6 +21,7 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request).catch(() => caches.match('/index.html')))
+    caches.match(e.request).then(cached => cached || fetch(e.request)
+    .catch(() => caches.match('/scheduler/index.html')))
   );
 });
